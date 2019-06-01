@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FinancialModuleLibrary</string>
+    <string name="number_identifier">N°:</string>
+    <string name="item_notifications_client">Cliente:</string>
+    <string name="item_notifications_status">Status:</string>
+    <string name="forma_de_pagamento">Forma de pagamento:</string>
+
+</resources>
