@@ -17,7 +17,7 @@ class FinancialActivity : AppCompatActivity(),
         binding = DataBindingUtil.setContentView(this, R.layout.financial_activity)
         val financesView = binding.financialView
         financesView.handler = this
-        financesView.getFinances("jtw programmatty")
+        financesView.getFinances("jtw programmatty", this)
     }
 
     override fun setFinancialTitle(title: String) {

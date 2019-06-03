@@ -1,25 +1,40 @@
 package br.com.soluevo.financialmodulelibrary.financial.financial
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.soluevo.financialmodulelibrary.R
+import br.com.soluevo.financialmodulelibrary.commom.di.ContextModule
 import br.com.soluevo.financialmodulelibrary.databinding.FinancialBinding
 import br.com.soluevo.financialmodulelibrary.financial.financial.adapter.FinancialAdapter
+import br.com.soluevo.financialmodulelibrary.financial.financial.di.component.DaggerFinancialComponent
 import br.com.soluevo.financialmodulelibrary.financial.financial.handler.FinancialHandler
 import com.angelomelo.alternative.application.modules.events.events.commons.RecyclerItemClickListener
+import javax.inject.Inject
 
-class Financial(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+
+class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, attrs) {
 
     var handler: FinancialHandler? = null
 
     private lateinit var binding: FinancialBinding
     private lateinit var attrs: AttributeSet
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private var viewModel: FinancialViewModel? = null
 
     private val finances =
         mapOf(0 to "Reembolso KM", 1 to "Reembolso Dispoesa", 2 to "Adiatamento", 3 to "Cartão de Crédito")
@@ -38,12 +53,24 @@ class Financial(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             R.layout.financial, this, true
         )
         this.attrs = attrs
+
+        injectDependencies()
         setupRecyclerView()
         initRecyclerItemClickListener()
     }
 
-     fun getFinances(token: String) {
-        print("chamada pra api com o token $token")
+    private fun injectDependencies() {
+        DaggerFinancialComponent.builder()
+            .contextModule(ContextModule(context))
+            .build()
+            .inject(this)
+    }
+
+     fun getFinances(token: String, activity: AppCompatActivity) {
+         viewModel = ViewModelProviders.of(activity, viewModelFactory)[FinancialViewModel::class.java]
+         viewModel?.getFinances()
+
+         print("chamada pra api com o token $token")
     }
 
     private fun setupRecyclerView() {
