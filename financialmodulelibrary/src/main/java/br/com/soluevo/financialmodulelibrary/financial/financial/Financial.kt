@@ -84,7 +84,7 @@ class Financial(context: Context, attrs: AttributeSet) : LinearLayout(context, a
                 recyclerView,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
-                        handler?.setFinancialTitle(finances[position])
+                        handler?.setFinancialType(finances[position])
                     }
 
                     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
