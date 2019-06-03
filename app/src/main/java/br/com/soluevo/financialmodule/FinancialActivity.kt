@@ -29,8 +29,7 @@ class FinancialActivity : AppCompatActivity(),
         financesView.clearDisposable()
     }
 
-
-    override fun setFinancialTitle(financialType: FinancialType) {
+    override fun setFinancialType(financialType: FinancialType) {
         val intent = Intent(this, FinancialSummaryActivity::class.java)
         intent.putExtra("idFinancial", title)
         startActivity(intent)

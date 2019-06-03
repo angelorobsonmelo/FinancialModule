@@ -4,6 +4,6 @@ import br.com.soluevo.financialmodulelibrary.model.FinancialType
 
 interface FinancialHandler {
 
-    fun setFinancialTitle(financialType: FinancialType)
+    fun setFinancialType(financialType: FinancialType)
     fun error(error: String)
 }
