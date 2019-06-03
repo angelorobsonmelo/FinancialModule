@@ -16,13 +16,13 @@
             android:id="@+id/swipe_to_refresh_layout"
             app:onRefreshListener="@{() -> viewModel.getFinances()}"
             app:refreshing="@{safeUnbox(viewModel.isLoadingObserver)}"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="8dp">
 
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp">
+                android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
