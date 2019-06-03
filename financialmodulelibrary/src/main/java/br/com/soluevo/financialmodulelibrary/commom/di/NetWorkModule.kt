@@ -81,7 +81,7 @@ class NetWorkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("https://api.kmonline.com.br/webservices/")
+            .baseUrl("https://private-f8822-financeiro1.apiary-mock.com/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .build()

@@ -20,11 +20,12 @@ import br.com.soluevo.financialmodulelibrary.databinding.FinancialBinding
 import br.com.soluevo.financialmodulelibrary.financial.financial.adapter.FinancialAdapter
 import br.com.soluevo.financialmodulelibrary.financial.financial.di.component.DaggerFinancialComponent
 import br.com.soluevo.financialmodulelibrary.financial.financial.handler.FinancialHandler
+import br.com.soluevo.financialmodulelibrary.model.FinancialType
 import com.angelomelo.alternative.application.modules.events.events.commons.RecyclerItemClickListener
 import javax.inject.Inject
 
 
-class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, attrs) {
+class Financial(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     var handler: FinancialHandler? = null
 
@@ -35,10 +36,7 @@ class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, 
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private var viewModel: FinancialViewModel? = null
-
-    private val finances =
-        mapOf(0 to "Reembolso KM", 1 to "Reembolso Dispoesa", 2 to "Adiatamento", 3 to "Cartão de Crédito")
-
+    private val finances = mutableListOf<FinancialType>()
     private var financialAdapter = FinancialAdapter(
         finances
     )
@@ -54,6 +52,10 @@ class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, 
         )
         this.attrs = attrs
 
+        setUpElements()
+    }
+
+    private fun setUpElements() {
         injectDependencies()
         setupRecyclerView()
         initRecyclerItemClickListener()
@@ -64,13 +66,6 @@ class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, 
             .contextModule(ContextModule(context))
             .build()
             .inject(this)
-    }
-
-     fun getFinances(token: String, activity: AppCompatActivity) {
-         viewModel = ViewModelProviders.of(activity, viewModelFactory)[FinancialViewModel::class.java]
-         viewModel?.getFinances()
-
-         print("chamada pra api com o token $token")
     }
 
     private fun setupRecyclerView() {
@@ -89,7 +84,7 @@ class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, 
                 recyclerView,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
-                        handler?.setFinancialTitle(finances[position] ?: error("posição não encontrada"))
+                        handler?.setFinancialTitle(finances[position])
                     }
 
                     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -103,6 +98,20 @@ class Financial(context: Context, attrs: AttributeSet) :  LinearLayout(context, 
                 }
             )
         )
+    }
+
+    fun getFinances(token: String, activity: AppCompatActivity) {
+        viewModel = ViewModelProviders.of(activity, viewModelFactory)[FinancialViewModel::class.java]
+        viewModel?.getFinances()
+
+        viewModel?.successObserver?.observe(activity, Observer {
+             financialAdapter.updateItems(it)
+        })
+
+        viewModel?.errorObserver?.observe(activity, Observer {
+            handler?.error(it)
+        })
+
     }
 
 

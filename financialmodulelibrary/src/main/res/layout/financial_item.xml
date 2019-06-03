@@ -2,7 +2,7 @@
 <layout>
 
     <data>
-        <variable name="financialTitle" type="String"/>
+        <variable name="financialType" type="br.com.soluevo.financialmodulelibrary.model.FinancialType"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,11 +21,11 @@
                 android:layout_margin="@dimen/default_half_margin"/>
 
         <TextView
-                android:id="@+id/financial_type"
+                android:id="@+id/financial_type_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Financeiro"
-                android:text="@{financialTitle}"
+                android:text="@{financialType.name}"
                 android:layout_gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"

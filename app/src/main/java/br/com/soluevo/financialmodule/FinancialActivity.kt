@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import br.com.soluevo.financialmodule.databinding.FinancialActivityBinding
 import br.com.soluevo.financialmodulelibrary.financial.financial.handler.FinancialHandler
+import br.com.soluevo.financialmodulelibrary.model.FinancialType
 
 class FinancialActivity : AppCompatActivity(),
     FinancialHandler {
@@ -20,9 +21,13 @@ class FinancialActivity : AppCompatActivity(),
         financesView.getFinances("jtw programmatty", this)
     }
 
-    override fun setFinancialTitle(title: String) {
+    override fun setFinancialTitle(financialType: FinancialType) {
         val intent = Intent(this, FinancialSummaryActivity::class.java)
         intent.putExtra("idFinancial", title)
         startActivity(intent)
+    }
+
+    override fun error(error: String) {
+
     }
 }

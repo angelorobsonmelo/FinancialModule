@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="br.com.soluevo.financialmodulelibrary"/>
+          package="br.com.soluevo.financialmodulelibrary">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>

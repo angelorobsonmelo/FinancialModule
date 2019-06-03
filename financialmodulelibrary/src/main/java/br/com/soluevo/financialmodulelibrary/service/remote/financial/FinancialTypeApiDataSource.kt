@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface FinancialTypeApiDataSource {
 
-    @GET("finances")
+    @GET("financestype")
     fun getFinances(): Observable<MutableList<FinancialType>>
 }

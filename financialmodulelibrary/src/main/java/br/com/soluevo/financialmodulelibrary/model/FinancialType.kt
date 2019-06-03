@@ -1,6 +1,6 @@
 package br.com.soluevo.financialmodulelibrary.model
 
-class FinancialType(
-    id: String,
-    name: String
+data class FinancialType(
+    val id: String,
+    val name: String
 )
