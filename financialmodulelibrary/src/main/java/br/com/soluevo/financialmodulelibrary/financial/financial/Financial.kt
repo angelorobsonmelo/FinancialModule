@@ -104,6 +104,9 @@ class Financial(context: Context, attrs: AttributeSet) : LinearLayout(context, a
         viewModel = ViewModelProviders.of(activity, viewModelFactory)[FinancialViewModel::class.java]
         viewModel?.getFinances()
 
+        binding.lifecycleOwner = activity
+        binding.viewModel = viewModel
+
         viewModel?.successObserver?.observe(activity, Observer {
              financialAdapter.updateItems(it)
         })
@@ -112,6 +115,10 @@ class Financial(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             handler?.error(it)
         })
 
+    }
+
+    fun clearDisposable() {
+        viewModel?.disposables?.clear()
     }
 
 

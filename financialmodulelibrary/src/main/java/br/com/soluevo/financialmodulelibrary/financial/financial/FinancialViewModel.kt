@@ -13,7 +13,7 @@ class FinancialViewModel @Inject constructor(
     private val financesApiDataSource: FinancialTypeApiDataSource
 ) : BaseViewModel<MutableList<FinancialType>>() {
 
-    private val disposables = CompositeDisposable()
+     val disposables = CompositeDisposable()
 
      fun getFinances() {
         val disposible = financesApiDataSource.getFinances().subscribeOn(Schedulers.io())
