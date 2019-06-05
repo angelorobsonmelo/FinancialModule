@@ -16,8 +16,7 @@
             android:id="@+id/swipe_to_refresh_layout"
             app:onRefreshListener="@{() -> viewModel.getFinances()}"
             app:refreshing="@{safeUnbox(viewModel.isLoadingObserver)}"
-            android:orientation="vertical"
-            android:layout_margin="8dp">
+            android:orientation="vertical">
 
         <LinearLayout
                 android:orientation="vertical"

@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable name="financialType" type="br.com.soluevo.financialmodulelibrary.model.FinancialType"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/bg_white_stroke_gray"
-                  android:orientation="horizontal"
-                  android:layout_marginTop="@dimen/small_spacing_line">
-
-        <View
-                android:id="@+id/view"
-                android:visibility="invisible"
-                android:layout_width="2dp"
-                android:layout_height="40dp"
-                android:layout_margin="@dimen/default_half_margin"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_stroke_gray"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
 
         <TextView
                 android:id="@+id/financial_type_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Financeiro"
+                tools:text="Reembolso KM"
                 android:text="@{financialType.name}"
                 android:layout_gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:layout_marginRight="@dimen/default_half_margin"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/color_blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="24dp" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="24dp" android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"/>
+        <ImageView
+                android:layout_width="41dp"
+                android:layout_height="36dp" app:srcCompat="@drawable/ic_arrow_detail_24dp"
+                android:id="@+id/imageView2" android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="@+id/financial_type_text_view"
+                app:layout_constraintBottom_toBottomOf="@+id/financial_type_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

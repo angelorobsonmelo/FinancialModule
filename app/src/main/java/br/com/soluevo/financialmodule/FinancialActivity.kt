@@ -21,7 +21,7 @@ class FinancialActivity : AppCompatActivity(),
 
         financesView = binding.financialView
         financesView.handler = this
-        financesView.getFinances("jtw programmatty", this)
+        financesView.getFinances("Cookie id", this)
     }
 
     override fun onDestroy() {

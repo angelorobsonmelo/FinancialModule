@@ -8,5 +8,6 @@
     <color name="color_aqua">#20b48d</color>
     <color name="colorAccent">@color/color_blue_dark</color>
     <color name="color_blue_dark">#002942</color>
+    <color name="color_blue">#0099CB</color>
 
 </resources>
