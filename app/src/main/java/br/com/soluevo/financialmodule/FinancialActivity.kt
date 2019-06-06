@@ -21,7 +21,7 @@ class FinancialActivity : AppCompatActivity(),
 
         financesView = binding.financialView
         financesView.handler = this
-        financesView.getFinances("Cookie id", this)
+        financesView.getFinances("_session_id=OqBRjNjX89fV4wjh-ecvgfCWNPE; path=/; HttpOnly", this)
     }
 
     override fun onDestroy() {

@@ -1,12 +1,10 @@
 package br.com.soluevo.financialmodule
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.soluevo.financialmodule.databinding.FinancialDetailActivityBinding
-import br.com.soluevo.financialmodule.databinding.FinancialSummaryActivityBinding
 import br.com.soluevo.financialmodulelibrary.financial.financialDetail.handler.FinancialDetailHandler
-import br.com.soluevo.financialmodulelibrary.financial.financialsummary.handler.FinancialSummaryHandler
 import br.com.soluevo.financialmodulelibrary.model.Financial
 
 class FinancialDetailActivity : AppCompatActivity(),

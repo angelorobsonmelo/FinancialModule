@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.soluevo.financialmodulelibrary.R
 import br.com.soluevo.financialmodulelibrary.databinding.FinancialSummaryBinding
@@ -46,8 +48,10 @@ class FinancialSummary(context: Context, attrs: AttributeSet) : LinearLayout(con
         initRecyclerItemClickListener()
     }
 
-    fun getFinancesSummary(idFinancial: String, token: String) {
+    fun getFinancesSummaryFromActivity(idFinancial: String, cookieId: String, activity: AppCompatActivity, dateId: String) {
+    }
 
+    fun getFinancesSummaryFromFragment(idFinancial: String, cookieId: String, activity: AppCompatActivity, dateId: String) {
     }
 
     private fun setupRecyclerView() {
